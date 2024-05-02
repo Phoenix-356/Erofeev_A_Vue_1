@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевернуть и Добавить элементы списка</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Кнопка для переворота текста -->
+        <button @click="reverseText">{{ buttonText }}</button>
+        
+        <!-- Список элементов -->
+        <ul>
+            <li v-for="(item, index) in items" :key="index" @click="removeItem(index)">
+                {{ item }}
+            </li>
+        </ul>
+
+        <!-- Кнопка для добавления нового элемента списка -->
+        <button @click="addItem">Добавить</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                buttonText: 'Перевернуть', // Текст кнопки
+                items: [] // Элементы списка
+            },
+            methods: {
+                reverseText() {
+                    // Переворачиваем текст кнопки
+                    this.buttonText = this.buttonText.split('').reverse().join('');
+                },
+                addItem() {
+                    // Добавляем новый элемент в список
+                    this.items.push('Новый элемент списка');
+                },
+                removeItem(index) {
+                    // Удаляем элемент из списка при клике
+                    this.items.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
